@@ -1,0 +1,5 @@
+.vs/*
+
+Debug/*
+daq/Debug/*
+daq/x64/Debug/*
