@@ -30,7 +30,6 @@ __isset._receiver_id = true;
 
 void ThriftMessage::__set__timestamp(const std::string& val) {
   this->_timestamp = val;
-__isset._timestamp = true;
 }
 
 void ThriftMessage::__set__subject(const std::string& val) {
@@ -95,7 +94,6 @@ __isset._list_i64 = true;
 
 void ThriftMessage::__set__list_double(const std::vector<double> & val) {
   this->_list_double = val;
-__isset._list_double = true;
 }
 
 void ThriftMessage::__set__list_string(const std::vector<std::string> & val) {
@@ -182,6 +180,8 @@ uint32_t ThriftMessage::read(::apache::thrift::protocol::TProtocol* iprot) {
   using ::apache::thrift::protocol::TProtocolException;
 
   bool isset__sender_id = false;
+  bool isset__timestamp = false;
+  bool isset__list_double = false;
 
   while (true)
   {
@@ -210,7 +210,7 @@ uint32_t ThriftMessage::read(::apache::thrift::protocol::TProtocol* iprot) {
       case 3:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->_timestamp);
-          this->__isset._timestamp = true;
+          isset__timestamp = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -414,7 +414,7 @@ uint32_t ThriftMessage::read(::apache::thrift::protocol::TProtocol* iprot) {
             }
             xfer += iprot->readListEnd();
           }
-          this->__isset._list_double = true;
+          isset__list_double = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -714,6 +714,10 @@ uint32_t ThriftMessage::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   if (!isset__sender_id)
     throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset__timestamp)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset__list_double)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
   return xfer;
 }
 
@@ -731,11 +735,10 @@ uint32_t ThriftMessage::write(::apache::thrift::protocol::TProtocol* oprot) cons
     xfer += oprot->writeString(this->_receiver_id);
     xfer += oprot->writeFieldEnd();
   }
-  if (this->__isset._timestamp) {
-    xfer += oprot->writeFieldBegin("_timestamp", ::apache::thrift::protocol::T_STRING, 3);
-    xfer += oprot->writeString(this->_timestamp);
-    xfer += oprot->writeFieldEnd();
-  }
+  xfer += oprot->writeFieldBegin("_timestamp", ::apache::thrift::protocol::T_STRING, 3);
+  xfer += oprot->writeString(this->_timestamp);
+  xfer += oprot->writeFieldEnd();
+
   if (this->__isset._subject) {
     xfer += oprot->writeFieldBegin("_subject", ::apache::thrift::protocol::T_STRING, 4);
     xfer += oprot->writeString(this->_subject);
@@ -853,19 +856,18 @@ uint32_t ThriftMessage::write(::apache::thrift::protocol::TProtocol* oprot) cons
     }
     xfer += oprot->writeFieldEnd();
   }
-  if (this->__isset._list_double) {
-    xfer += oprot->writeFieldBegin("_list_double", ::apache::thrift::protocol::T_LIST, 16);
+  xfer += oprot->writeFieldBegin("_list_double", ::apache::thrift::protocol::T_LIST, 16);
+  {
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_DOUBLE, static_cast<uint32_t>(this->_list_double.size()));
+    std::vector<double> ::const_iterator _iter133;
+    for (_iter133 = this->_list_double.begin(); _iter133 != this->_list_double.end(); ++_iter133)
     {
-      xfer += oprot->writeListBegin(::apache::thrift::protocol::T_DOUBLE, static_cast<uint32_t>(this->_list_double.size()));
-      std::vector<double> ::const_iterator _iter133;
-      for (_iter133 = this->_list_double.begin(); _iter133 != this->_list_double.end(); ++_iter133)
-      {
-        xfer += oprot->writeDouble((*_iter133));
-      }
-      xfer += oprot->writeListEnd();
+      xfer += oprot->writeDouble((*_iter133));
     }
-    xfer += oprot->writeFieldEnd();
+    xfer += oprot->writeListEnd();
   }
+  xfer += oprot->writeFieldEnd();
+
   if (this->__isset._list_string) {
     xfer += oprot->writeFieldBegin("_list_string", ::apache::thrift::protocol::T_LIST, 17);
     {
@@ -1150,7 +1152,7 @@ void ThriftMessage::printTo(std::ostream& out) const {
   out << "ThriftMessage(";
   out << "_sender_id=" << to_string(_sender_id);
   out << ", " << "_receiver_id="; (__isset._receiver_id ? (out << to_string(_receiver_id)) : (out << "<null>"));
-  out << ", " << "_timestamp="; (__isset._timestamp ? (out << to_string(_timestamp)) : (out << "<null>"));
+  out << ", " << "_timestamp=" << to_string(_timestamp);
   out << ", " << "_subject="; (__isset._subject ? (out << to_string(_subject)) : (out << "<null>"));
   out << ", " << "_sequence_no="; (__isset._sequence_no ? (out << to_string(_sequence_no)) : (out << "<null>"));
   out << ", " << "_total_count="; (__isset._total_count ? (out << to_string(_total_count)) : (out << "<null>"));
@@ -1163,7 +1165,7 @@ void ThriftMessage::printTo(std::ostream& out) const {
   out << ", " << "_list_i16="; (__isset._list_i16 ? (out << to_string(_list_i16)) : (out << "<null>"));
   out << ", " << "_list_i32="; (__isset._list_i32 ? (out << to_string(_list_i32)) : (out << "<null>"));
   out << ", " << "_list_i64="; (__isset._list_i64 ? (out << to_string(_list_i64)) : (out << "<null>"));
-  out << ", " << "_list_double="; (__isset._list_double ? (out << to_string(_list_double)) : (out << "<null>"));
+  out << ", " << "_list_double=" << to_string(_list_double);
   out << ", " << "_list_string="; (__isset._list_string ? (out << to_string(_list_string)) : (out << "<null>"));
   out << ", " << "_set_bool="; (__isset._set_bool ? (out << to_string(_set_bool)) : (out << "<null>"));
   out << ", " << "_set_i16="; (__isset._set_i16 ? (out << to_string(_set_i16)) : (out << "<null>"));
