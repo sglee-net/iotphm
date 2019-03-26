@@ -163,15 +163,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="messenger_constants.h" />
-    <ClInclude Include="messenger_types.h" />
+    <ClInclude Include="messenger_iot_constants.h" />
+    <ClInclude Include="messenger_iot_types.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ThriftRWService.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="daq.cpp" />
-    <ClCompile Include="messenger_constants.cpp" />
-    <ClCompile Include="messenger_types.cpp" />
+    <ClCompile Include="messenger_iot_constants.cpp" />
+    <ClCompile Include="messenger_iot_types.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

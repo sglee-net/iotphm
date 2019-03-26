@@ -23,8 +23,8 @@
 #include <thrift/transport/TSocket.h>
 #include <thrift/transport/TTransportUtils.h>
 #include <thrift/stdcxx.h>
-#include "./messenger_constants.h"
-#include "./messenger_types.h"
+#include "./messenger_iot_constants.h"
+#include "./messenger_iot_types.h"
 #include "./ThriftRWService.h"
 #include <crtdbg.h>
 #include <direct.h>
@@ -108,6 +108,18 @@ int main(void)
 			cerr << "thrift port is not opened";
 			exit(1);
 		}
+
+	//	//start_time = std::chrono::system_clock::now();
+	//	string ret;
+	//	using namespace std::chrono;
+	//	milliseconds ms = duration_cast<milliseconds>(
+	//		system_clock::now().time_since_epoch()
+	//		);
+	//	client.writeString(ret, "id", "hello");
+	////	std::chrono::system_clock::time_point end_time = std::chrono::system_clock::now();
+	//	
+	//	cout << "elapsed time: " << ms.count() << endl;
+	//	return 0;
 
 		//////client.setMsg(msg);
 		//for (int32_t i = 0; i<1000; i++) {
@@ -279,22 +291,22 @@ int32 CVICALLBACK EveryNCallback(TaskHandle taskHandle, int32 everyNsamplesEvent
 		//		int count = nSAMPLES / nCHANNEL;
 		ThriftMessage message0;
 		message0._sender_id = "d0";
-		message0._receiver_id = "";
+		//message0._receiver_id = "";
 		message0._list_double.reserve(nSIZE);
 		message0._timestamp = str_ptime;
 		ThriftMessage message1;
 		message1._sender_id = "d1";
-		message1._receiver_id = "";
+		//message1._receiver_id = "";
 		message1._list_double.reserve(nSIZE);
 		message1._timestamp = str_ptime;
 		ThriftMessage message2;
 		message2._sender_id = "d2";
-		message2._receiver_id = "";
+		//message2._receiver_id = "";
 		message2._list_double.reserve(nSIZE);
 		message2._timestamp = str_ptime;
 		ThriftMessage message3;
 		message3._sender_id = "d3";
-		message3._receiver_id = "";
+		//message3._receiver_id = "";
 		message3._list_double.reserve(nSIZE);
 		message3._timestamp = str_ptime;
 		//printf("%s \n", str_ptime);
