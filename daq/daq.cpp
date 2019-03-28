@@ -23,9 +23,9 @@
 #include <thrift/transport/TSocket.h>
 #include <thrift/transport/TTransportUtils.h>
 #include <thrift/stdcxx.h>
-#include "./messenger_iot_constants.h"
-#include "./messenger_iot_types.h"
-#include "./ThriftRWService.h"
+//#include "./messenger_iot_constants.h"
+//#include "./messenger_iot_types.h"
+//#include "./ThriftRWService.h"
 #include <crtdbg.h>
 #include <direct.h>
 
